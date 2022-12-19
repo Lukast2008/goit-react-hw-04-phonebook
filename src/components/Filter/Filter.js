@@ -5,7 +5,6 @@ export const FilterContacts = ({ filter, onChange }) => {
   return (
     <form className={styles.bodyform}>
       <label className={styles.label}>
-        {/* find contact by name */}
         <input
           className={styles.inputItemFind}
           type="text"

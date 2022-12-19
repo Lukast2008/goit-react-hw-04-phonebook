@@ -6,21 +6,13 @@ import { FilterContacts } from './Filter/Filter';
 import styles from './Phonebook/styles.module.css';
 
 export const App = () => {
-  const [ contacts, setContacts ] = useState([ ]);
-  const [ filterContact, setFilterContact]  = useState('');
-  const phoneList = 'phoneList';
-
-
-
-  useEffect(() => {
-    const stContact = JSON.parse(localStorage.getItem(phoneList));
-    if (stContact) {
-      setContacts( stContact);
-    }
-  }, []);
+  const [contacts, setContacts] = useState(
+    JSON.parse(localStorage.getItem('phoneList')) ?? []
+  );
+  const [filterContact, setFilterContact] = useState('');
 
   useEffect(() => {
-     localStorage.setItem(phoneList, JSON.stringify(contacts));
+    localStorage.setItem('phoneList', JSON.stringify(contacts));
   }, [contacts]);
 
   const deleteContact = id => {
@@ -33,16 +25,16 @@ export const App = () => {
     );
   };
 
-  const handleSubmit = ( name, number ) => {
+  const handleSubmit = (name, number) => {
     if (contacts.find(el => el.name === name)) {
       alert(`${name} is already in contacts`);
     } else {
-      setContacts([...contacts, { id: nanoid(), name, number }]);
+      setContacts(prev => [...prev, { id: nanoid(), name, number }]);
     }
   };
 
   const onChange = ev => {
-    setFilterContact( ev.target.value );
+    setFilterContact(ev.target.value);
   };
 
   return (

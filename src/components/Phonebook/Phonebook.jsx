@@ -77,13 +77,5 @@ export const Phonebook = ({ addContact }) => {
 };
 
 Phonebook.propTypes = {
-  inputName: PropTypes.arrayOf(
-    PropTypes.shape({
-      name: PropTypes.string.isRequired,
-      pattern: PropTypes.string.isRequired,
-      title: PropTypes.string.isRequired,
-    })
-  ),
-
   addContact: PropTypes.func.isRequired,
 };
